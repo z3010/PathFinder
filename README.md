@@ -1,4 +1,4 @@
-# 🤖 Robot Pathfinder Visualizer
+#  Robot Pathfinder Visualizer
 
 An interactive pathfinding visualizer where a robot must **collect the KEY first** to unlock the **GATE**, then reach the **GOAL**.
 
