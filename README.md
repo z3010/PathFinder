@@ -33,54 +33,6 @@ All algorithms enforce: **Robot must visit KEY cell before it can pass through G
 
 ---
 
-## Project Structure
-
-```
-pathfinder/
-├── backend/
-│   ├── algorithms.py      # All 6 pathfinding algorithms + CityGrid
-│   ├── server.py          # FastAPI REST API
-│   └── requirements.txt
-├── frontend/
-│   ├── src/
-│   │   ├── App.jsx                    # Main app + animation engine
-│   │   └── components/
-│   │       ├── GridCanvas.jsx         # Canvas renderer
-│   │       ├── AlgorithmPanel.jsx     # Algorithm selector + controls
-│   │       ├── StatsPanel.jsx         # Live stats display
-│   │       ├── ComparePanel.jsx       # Side-by-side comparison
-│   │       └── MapEditor.jsx          # ASCII map editor
-│   ├── index.html
-│   ├── package.json
-│   └── vite.config.js
-└── README.md
-```
-
----
-
-## Setup & Run
-
-### Backend
-
-```bash
-cd backend
-pip install -r requirements.txt
-python server.py
-# → API running at http://localhost:8000
-# → Swagger docs at http://localhost:8000/docs
-```
-
-### Frontend
-
-```bash
-cd frontend
-npm install
-npm run dev
-# → App running at http://localhost:3000
-```
-
----
-
 ## API Endpoints
 
 | Method | Route | Description |
@@ -89,22 +41,6 @@ npm run dev
 | `POST` | `/grid` | Parse map → return grid layout |
 | `POST` | `/solve` | Run algorithm → return path + visited |
 | `POST` | `/compare` | Run all algorithms → return stats table |
-
-### Example: Solve with A*
-
-```bash
-curl -X POST http://localhost:8000/solve \
-  -H "Content-Type: application/json" \
-  -d '{"algorithm": "astar"}'
-```
-
-### Example: Custom Map
-
-```bash
-curl -X POST http://localhost:8000/solve \
-  -H "Content-Type: application/json" \
-  -d '{"algorithm": "dijkstra", "map_str": "#####\n#S..#\n#.K.#\n#.G.#\n#..X#\n#####"}'
-```
 
 ---
 
