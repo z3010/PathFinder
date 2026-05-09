@@ -1,10 +1,7 @@
 #  Robot Pathfinder Visualizer
-
+https://pathfinder-ui.onrender.com
 An interactive pathfinding visualizer where a robot must **collect the KEY first** to unlock the **GATE**, then reach the **GOAL**.
-
-Built with **FastAPI (Python)** backend and **React + Vite** frontend.
-
----
+Built with **FastAPI (Python)** backend and **React + Vite** frontend. 
 
 ## Algorithms Implemented
 
@@ -25,13 +22,13 @@ All algorithms enforce: **Robot must visit KEY cell before it can pass through G
 
 | Symbol | Cell | Description |
 |---|---|---|
-| `S` | Start 🤖 | Robot starting position |
-| `X` | Goal 🏁 | Destination |
-| `K` | Key 🔑 | Must collect before passing Gate |
-| `G` | Gate 🚪 | Blocked until key is held |
+| `S` | Start  | Robot starting position |
+| `X` | Goal  | Destination |
+| `K` | Key | Must collect before passing Gate |
+| `G` | Gate | Blocked until key is held |
 | `#` | Wall | Impassable |
 | `.` | Free | Walkable |
-| `H` | Hazard ⚡ | Passable with cost penalty |
+| `H` | Hazard  | Passable with cost penalty |
 | `C` | Charger | Restores robot energy |
 
 ---
@@ -113,12 +110,12 @@ curl -X POST http://localhost:8000/solve \
 
 ## Features
 
-- 🎞 **Animated exploration** — watch nodes expand in real-time
-- 🤖 **Robot animation** — robot walks along the final path
-- 📊 **Algorithm comparison** — bar charts + stats table
-- ✏️ **Map Editor** — draw custom maps in ASCII
-- 🎚 **Speed control** — slow to fast
-- 🗺 **Legend** — color-coded cell types
+-  **Animated exploration** — watch nodes expand in real-time
+-  **Robot animation** — robot walks along the final path
+-  **Algorithm comparison** — bar charts + stats table
+-  **Map Editor** — draw custom maps in ASCII
+-  **Speed control** — slow to fast
+- **Legend** — color-coded cell types
 
 ---
 
@@ -133,9 +130,3 @@ This means the robot naturally routes to the key first, then proceeds to the gat
 
 ---
 
-## Original Notebook
-
-This project extends `Group8_final.ipynb` (A* with energy constraints) by adding:
-- 5 additional algorithms (Dijkstra, BFS, DFS, Greedy, Bidirectional BFS)
-- Full interactive web visualizer (FastAPI + React)
-- Map editor, comparison dashboard, animation engine
