@@ -5,7 +5,7 @@ import StatsPanel from './components/StatsPanel';
 import MapEditor from './components/MapEditor';
 import ComparePanel from './components/ComparePanel';
 
-const API = 'http://localhost:8000';
+const API = 'https://pathfinder-api-2au5.onrender.com';
 
 const DEFAULT_MAP = `###############.#########
 #...........#...#.......#
