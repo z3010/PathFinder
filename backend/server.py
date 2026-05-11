@@ -1,6 +1,4 @@
-"""
-FastAPI backend for the Pathfinding Visualizer.
-"""
+#FastAPI backend for the Pathfinding Visualizer.
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -19,7 +17,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ─── Default map ─────────────────────────────────────────────────────────────
+#Default map
 DEFAULT_MAP = """
 ###############.#########
 #...........#...#.......#
@@ -49,7 +47,7 @@ DEFAULT_MAP = """
 """.strip()
 
 
-# ─── Request / Response models ────────────────────────────────────────────────
+#Request / Response models
 class SolveRequest(BaseModel):
     algorithm: str
     map_str: Optional[str] = None
@@ -59,7 +57,7 @@ class GridRequest(BaseModel):
     map_str: Optional[str] = None
 
 
-# ─── Routes ──────────────────────────────────────────────────────────────────
+#Routes
 @app.get("/")
 def root():
     return {"message": "Pathfinding Visualizer API", "algorithms": list(ALGORITHMS.keys())}
