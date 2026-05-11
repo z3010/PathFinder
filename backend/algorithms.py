@@ -1,8 +1,6 @@
-"""
-Pathfinding algorithms for the Robot Navigation problem.
-All algorithms enforce: Robot must collect KEY before passing through GATE.
-Algorithms: A*, Dijkstra, BFS, DFS, Greedy Best-First, Bidirectional BFS
-"""
+# All algorithms enforce: Robot must collect KEY before passing through GATE.
+# Algorithms: A*, Dijkstra, BFS, DFS, Greedy Best-First, Bidirectional BFS
+
 
 import heapq
 from collections import deque, namedtuple
@@ -10,7 +8,7 @@ from dataclasses import dataclass, field
 from typing import Optional, List, Tuple, Dict, Any
 import numpy as np
 
-# ─── Cell type constants ────────────────────────────────────────────────────
+# Cell type constants
 FREE    = 0
 WALL    = 1
 CHARGER = 2
@@ -40,7 +38,7 @@ INF = float('inf')
 State = namedtuple('State', ['x', 'y', 'has_key'])
 
 
-# ─── CityGrid ───────────────────────────────────────────────────────────────
+# CityGrid
 class CityGrid:
     DIRECTIONS = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
@@ -110,7 +108,7 @@ class CityGrid:
         }
 
 
-# ─── Path reconstruction helpers ────────────────────────────────────────────
+# Path reconstruction helpers
 def reconstruct_path(came_from: dict, current) -> List[Tuple[int,int]]:
     path = []
     while current is not None:
@@ -124,7 +122,7 @@ def manhattan(ax, ay, bx, by) -> int:
     return abs(ax - bx) + abs(ay - by)
 
 
-# ─── A* ─────────────────────────────────────────────────────────────────────
+#  A* 
 @dataclass(order=True)
 class AStarNode:
     f: float
@@ -133,7 +131,7 @@ class AStarNode:
 
 
 def astar(grid: CityGrid) -> dict:
-    """A* with key-gate logic. Robot collects key, then unlocks gate."""
+    #A* with key-gate logic. Robot collects key, then unlocks gate.
     sx, sy = grid.start
     gx, gy = grid.goal
     start_state = State(sx, sy, False)
@@ -183,7 +181,7 @@ def astar(grid: CityGrid) -> dict:
     return {'path': [], 'visited': visited, 'expanded': expanded, 'found': False}
 
 
-# ─── Dijkstra ────────────────────────────────────────────────────────────────
+# Dijkstra 
 @dataclass(order=True)
 class DijkNode:
     cost: float
@@ -230,7 +228,7 @@ def dijkstra(grid: CityGrid) -> dict:
     return {'path': [], 'visited': visited, 'expanded': expanded, 'found': False}
 
 
-# ─── BFS ─────────────────────────────────────────────────────────────────────
+#BFS
 def bfs(grid: CityGrid) -> dict:
     sx, sy = grid.start
     gx, gy = grid.goal
@@ -262,7 +260,7 @@ def bfs(grid: CityGrid) -> dict:
     return {'path': [], 'visited': visited, 'expanded': expanded, 'found': False}
 
 
-# ─── DFS ─────────────────────────────────────────────────────────────────────
+#DFS
 def dfs(grid: CityGrid) -> dict:
     sx, sy = grid.start
     gx, gy = grid.goal
@@ -297,7 +295,7 @@ def dfs(grid: CityGrid) -> dict:
     return {'path': [], 'visited': visited, 'expanded': expanded, 'found': False}
 
 
-# ─── Greedy Best-First ────────────────────────────────────────────────────────
+#Greedy Best-First
 @dataclass(order=True)
 class GreedyNode:
     h: float
@@ -348,13 +346,11 @@ def greedy_best_first(grid: CityGrid) -> dict:
     return {'path': [], 'visited': visited, 'expanded': expanded, 'found': False}
 
 
-# ─── Bidirectional BFS ───────────────────────────────────────────────────────
+#Bidirectional BFS
 def bfs_bidirectional(grid: CityGrid) -> dict:
-    """
-    Bidirectional BFS. Forward search: must pick up key.
-    Backward search: starts from goal, no key constraint (meeting point check).
-    Meeting point is verified to be consistent with key-gate logic.
-    """
+    #Bidirectional BFS. Forward search: must pick up key.
+    #Backward search: starts from goal, no key constraint (meeting point check).
+    #Meeting point is verified to be consistent with key-gate logic.
     sx, sy = grid.start
     gx, gy = grid.goal
 
@@ -445,7 +441,7 @@ def bfs_bidirectional(grid: CityGrid) -> dict:
     return {'path': [], 'visited': all_visited, 'expanded': expanded, 'found': False}
 
 
-# ─── Registry ────────────────────────────────────────────────────────────────
+#Registry
 ALGORITHMS = {
     'astar':             ('A* (A-Star)',             astar),
     'dijkstra':          ('Dijkstra',                dijkstra),
